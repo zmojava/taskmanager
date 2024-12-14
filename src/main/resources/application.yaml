@@ -9,3 +9,7 @@ spring:
     hibernate:
       ddl-auto: update  # Это обновит схему базы данных, если нужно
     show-sql: true  # Показать SQL-запросы в логах
+
+  jwt:
+    secret: my_secret_key        # Секретный ключ для подписи токенов
+    expiration: 86400000         # Срок действия токена в миллисекундах

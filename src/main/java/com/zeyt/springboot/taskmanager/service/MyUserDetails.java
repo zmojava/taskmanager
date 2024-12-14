@@ -1,5 +1,6 @@
-package com.zeyt.springboot.taskmanager.model;
+package com.zeyt.springboot.taskmanager.service;
 
+import com.zeyt.springboot.taskmanager.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +19,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(user.getRoles().split(", "))
+        return Arrays.stream(user.getRole().split(", "))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
@@ -30,7 +31,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getName();
+        return user.getEmail();
     }
 
     @Override

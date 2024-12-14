@@ -1,6 +1,5 @@
 package com.zeyt.springboot.taskmanager.service;
 
-import com.zeyt.springboot.taskmanager.model.MyUserDetails;
 import com.zeyt.springboot.taskmanager.model.User;
 import com.zeyt.springboot.taskmanager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,9 @@ public class MyUserDetailService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByName(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<User> user = userRepository.findByEmail(email);
         return user.map(MyUserDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException(username + " user not found"));
+                .orElseThrow(() -> new UsernameNotFoundException(email + " user not found"));
     }
 }
